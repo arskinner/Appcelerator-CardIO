@@ -1,0 +1,7 @@
+android/dist/
+android/libs/
+android/build/
+iphone/dist/
+iphone/build/
+iphone/*.zip
+iphone/CardIO/CardIO/libCardIO.a

@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 2
+architectures: armeabi armeabi-v7a x86
+description: Appcelerator wrapper for the Card.io credit card scanning library. Use the phone's camera to read credit card numbers and expiration dates.
+author: Likely Solutions
+license: Free
+copyright: Copyright (c) 2015 by Likely Solutions
+
+# these should not be edited
+name: Card.io
+moduleid: com.likelysoft.cardio
+guid: c0304131-9611-4fff-9f83-f48bc9fa1714
+platform: android
+minsdk: 4.0.1

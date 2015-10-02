@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:module xmlns:ti="http://ti.appcelerator.org" xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--
+		Similar to tiapp.xml, but contains module/platform specific
+		configuration in <iphone>, <android>, and <mobileweb> sections
+	-->
+	<iphone>
+	</iphone>
+	<android xmlns:android="http://schemas.android.com/apk/res/android">
+	    <manifest xmlns:android="http://schemas.android.com/apk/res/android" >
+			<uses-sdk android:minSdkVersion="8" />
+
+            <!-- Permission to vibrate - recommended, allows vibration feedback on scan -->
+            <uses-permission android:name="android.permission.VIBRATE" />
+
+            <!-- Permission to use camera - required -->
+            <uses-permission android:name="android.permission.CAMERA" />
+
+            <!-- Camera features - recommended -->
+            <uses-feature android:name="android.hardware.camera" android:required="false" />
+            <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+            <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+        
+            <application>
+				<!-- Activities responsible for gathering payment info -->
+				<activity android:name="io.card.payment.CardIOActivity" android:configChanges="keyboardHidden|orientation" />
+				<activity android:name="io.card.payment.DataEntryActivity" android:screenOrientation="portrait" />
+			</application>
+		</manifest>
+	</android>
+	<mobileweb>
+	</mobileweb>
+</ti:module>

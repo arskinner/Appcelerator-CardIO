@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "769A3182A1C71E1182D8718900E553F1B97B0894",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C0FD0A04D323FE6C5E94E40E35BE35235DE544EB" : 0,
+    "769A3182A1C71E1182D8718900E553F1B97B0894" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "447C66F3-4FC0-4AD4-A5FC-B36224ECEB4A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C0FD0A04D323FE6C5E94E40E35BE35235DE544EB" : "com.likelysoft.cardio\/iphone\/CardIO\/",
+    "769A3182A1C71E1182D8718900E553F1B97B0894" : "com.likelysoft.cardio\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ComLikelysoftCardio",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iphone\/ComLikelysoftCardio.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/arskinner\/Appcelerator-CardIO.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "769A3182A1C71E1182D8718900E553F1B97B0894"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/card-io\/card.io-iOS-SDK",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C0FD0A04D323FE6C5E94E40E35BE35235DE544EB"
+    }
+  ]
+}
