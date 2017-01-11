@@ -8,6 +8,11 @@ var button = Ti.UI.createButton({
     title: 'Scan Card'
 });
 
+if (OS_ANDROID) {
+	cardio.setCardIOLogo(false);
+	cardio.setPayPalLogo(false);
+}
+
 button.addEventListener('click', function() {
     // Open modal scanner window
     cardio.scanCard(function(data){

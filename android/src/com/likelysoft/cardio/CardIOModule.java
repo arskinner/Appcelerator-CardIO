@@ -40,6 +40,8 @@ public class CardIOModule extends KrollModule
 	// Standard Debugging variables
 	private static final String LCAT = "CardIOModule";
 	private static final boolean DBG = TiConfig.LOGD;
+    private boolean useCardioIcon = false;
+    private boolean usePaypalIcon = true;
 
 	public CardIOModule()
 	{
@@ -62,9 +64,12 @@ public class CardIOModule extends KrollModule
 		final TiActivitySupport activitySupport = (TiActivitySupport) activity;
 
 		final TiIntentWrapper scanIntent = new TiIntentWrapper(new Intent(activity, CardIOActivity.class));
+
 		scanIntent.setWindowId(TiIntentWrapper.createActivityName("CARDIOMODULE"));
 
 		// Customize these values to suit your needs.
+        scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, !useCardioIcon); 
+        scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_USE_PAYPAL_ACTIONBAR_ICON, usePaypalIcon); // default: true
 		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true); // default: true
 		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, true); // default: false
 
@@ -150,5 +155,29 @@ public class CardIOModule extends KrollModule
 			Log.d(LCAT, "Scan results: " + resultStr);
 		}
 	}
+    
+    @Kroll.setProperty
+    @Kroll.method
+    public void setCardIOLogo(boolean val) {
+        useCardioIcon = !val;
+    }
+    
+    @Kroll.setProperty
+    @Kroll.method
+    public void setPayPalLogo(boolean val) {
+        usePaypalIcon = !val;
+    }
+    
+    @Kroll.getProperty
+    @Kroll.method
+    public boolean getCardIOLogo() {
+        return useCardioIcon;
+    }
+    
+    @Kroll.getProperty
+    @Kroll.method
+    public boolean getPayPalLogo() {
+        return usePaypalIcon;
+    }
 
 }
