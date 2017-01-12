@@ -6,10 +6,15 @@ Appcelerator wrapper for the Card.io credit card scanning library. Use the phone
 
 #### Android
 
+Methods:
 * setCardIOLogo(bool)
 * setPayPalLogo(bool)
 * setLocale(String)
-* scanCard({complete:function(e),error:function(e)})
+* scanCard()
+
+Events:
+* complete
+* error
 
 #### iOS
 * scanCard(callback)

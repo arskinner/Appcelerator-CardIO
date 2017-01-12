@@ -58,7 +58,7 @@ public class CardIOModule extends KrollModule
 	// Methods
 	// Scan a card
 	@Kroll.method
-	public void scanCard(KrollFunction callback) throws Exception {
+	public void scanCard() throws Exception {
         Log.d(LCAT, "inside CardIO scanCard");
 
 		final Activity activity = TiApplication.getAppCurrentActivity();
@@ -80,7 +80,7 @@ public class CardIOModule extends KrollModule
 
 		CardIOResultHandler resultHandler = new CardIOResultHandler();
 
-        resultHandler.callback = callback;
+        //resultHandler.callback = callback;
 		resultHandler.activitySupport = activitySupport;
 		resultHandler.scanIntent = scanIntent.getIntent();
 		
@@ -90,7 +90,7 @@ public class CardIOModule extends KrollModule
 	protected class CardIOResultHandler implements TiActivityResultHandler, Runnable {
 
 		protected int code;
-		protected KrollFunction callback;
+		//protected KrollFunction callback;
 		protected TiActivitySupport activitySupport;
 		protected Intent scanIntent;
 
@@ -104,11 +104,12 @@ public class CardIOModule extends KrollModule
 			String msg = "Problem with scanner; " + e.getMessage();
 			Log.d(LCAT, "inside CardIOResultHandler onError " + msg);
 			
-			HashMap<String, String> callbackDict = new HashMap<String, String>();
-			
-			callbackDict.put("success", "false");
-			
-            callback.callAsync((KrollObject)callback, callbackDict);
+			//HashMap<String, String> callbackDict = new HashMap<String, String>();			
+			//callbackDict.put("success", "false");			
+            //callback.callAsync((KrollObject)callback, callbackDict);
+            KrollDict kd = new KrollDict();
+            kd.put("success", "false");                
+            fireEvent("error", kd);
 		}
 
 		public void onResult(Activity activity, int requestCode, int resultCode, Intent data) {
