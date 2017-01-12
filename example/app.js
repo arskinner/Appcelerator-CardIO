@@ -8,7 +8,7 @@ var button = Ti.UI.createButton({
     title: 'Scan Card'
 });
 
-if (OS_ANDROID) {
+if (Ti.Platform.osname == "android") {
 	cardio.setCardIOLogo(false);
 	cardio.setPayPalLogo(false);
 }
@@ -31,5 +31,5 @@ button.addEventListener('click', function() {
 		}
 	});
 });
-
+win.add(button);
 win.open();

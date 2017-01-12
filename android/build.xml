@@ -1,6 +1,6 @@
-<project name="ios" default="dist">
+<project name="card.io" default="dist">
 	<description>
-		Ant build script for Titanium Android module ios
+		Ant build script for Titanium Android module Card.io
 	</description>
 
 	<property name="ti.module.root" location="${basedir}"/>
