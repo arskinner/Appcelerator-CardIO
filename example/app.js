@@ -28,7 +28,7 @@ button.addEventListener('click', function() {
     if (Ti.Platform.osname == "android") {
         // android
         cardio.setCardIOLogo(false);
-        cardio.setPayPalLogo(true);
+        cardio.setPaypalLogo(true);
         cardio.setLocale("de");
 
         cardio.scanCard();

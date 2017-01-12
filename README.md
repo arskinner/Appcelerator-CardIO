@@ -8,7 +8,7 @@ Appcelerator wrapper for the Card.io credit card scanning library. Use the phone
 
 Methods:
 * setCardIOLogo(bool)
-* setPayPalLogo(bool)
+* setPaypalLogo(bool)
 * setLocale(String)
 * scanCard()
 

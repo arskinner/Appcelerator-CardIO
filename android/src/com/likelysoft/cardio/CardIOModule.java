@@ -167,7 +167,7 @@ public class CardIOModule extends KrollModule
     
     @Kroll.setProperty
     @Kroll.method
-    public void setPayPalLogo(boolean val) {
+    public void setPaypalLogo(boolean val) {
         usePaypalIcon = !val;
     }
     @Kroll.setProperty
@@ -184,7 +184,7 @@ public class CardIOModule extends KrollModule
     
     @Kroll.getProperty
     @Kroll.method
-    public boolean getPayPalLogo() {
+    public boolean getPaypalLogo() {
         return usePaypalIcon;
     }
     @Kroll.getProperty
