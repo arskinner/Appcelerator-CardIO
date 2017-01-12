@@ -137,14 +137,6 @@ public class CardIOModule extends KrollModule
 				}
 
 				// // get all of the data in a hash for returning
-				// callbackDict.put("success", "true");
-				// callbackDict.put("cvv", TiConvert.toString(scanResult.cvv));
-				// callbackDict.put("expiryMonth", TiConvert.toString(scanResult.expiryMonth));
-				// callbackDict.put("expiryYear", TiConvert.toString(scanResult.expiryYear));
-				// callbackDict.put("cardNumber", scanResult.getFormattedCardNumber());
-                // 
-				// callback.callAsync((KrollObject)callback, callbackDict);
-                
                 KrollDict kd = new KrollDict();
                 kd.put("success", "true");
 				kd.put("cvv", TiConvert.toString(scanResult.cvv));
@@ -160,11 +152,6 @@ public class CardIOModule extends KrollModule
                 kd.put("success", "false");                
                 kd.put("cancelled",resultStr);
                 fireEvent("error", kd);
-                
-				// callbackDict.put("success", "false");
-				// callbackDict.put("cancelled", resultStr);
-                // 
-				// callback.callAsync((KrollObject)callback, callbackDict);
 			}
 			
 			Log.d(LCAT, "Scan results: " + resultStr);
