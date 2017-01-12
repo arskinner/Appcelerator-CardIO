@@ -42,6 +42,7 @@ public class CardIOModule extends KrollModule
 	private static final boolean DBG = TiConfig.LOGD;
     private boolean useCardioIcon = false;
     private boolean usePaypalIcon = true;
+    private String locale = "en";
 
 	public CardIOModule()
 	{
@@ -68,6 +69,7 @@ public class CardIOModule extends KrollModule
 		scanIntent.setWindowId(TiIntentWrapper.createActivityName("CARDIOMODULE"));
 
 		// Customize these values to suit your needs.
+        scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_LANGUAGE_OR_LOCALE, locale); 
         scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, !useCardioIcon); 
         scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_USE_PAYPAL_ACTIONBAR_ICON, usePaypalIcon); // default: true
 		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true); // default: true
@@ -134,22 +136,35 @@ public class CardIOModule extends KrollModule
 					resultStr += "CVV has " + scanResult.cvv.length() + " digits.\n";
 				}
 
-				// get all of the data in a hash for returning
-				callbackDict.put("success", "true");
-				callbackDict.put("cvv", TiConvert.toString(scanResult.cvv));
-				callbackDict.put("expiryMonth", TiConvert.toString(scanResult.expiryMonth));
-				callbackDict.put("expiryYear", TiConvert.toString(scanResult.expiryYear));
-				callbackDict.put("cardNumber", scanResult.getFormattedCardNumber());
-
-				callback.callAsync((KrollObject)callback, callbackDict);
+				// // get all of the data in a hash for returning
+				// callbackDict.put("success", "true");
+				// callbackDict.put("cvv", TiConvert.toString(scanResult.cvv));
+				// callbackDict.put("expiryMonth", TiConvert.toString(scanResult.expiryMonth));
+				// callbackDict.put("expiryYear", TiConvert.toString(scanResult.expiryYear));
+				// callbackDict.put("cardNumber", scanResult.getFormattedCardNumber());
+                // 
+				// callback.callAsync((KrollObject)callback, callbackDict);
+                
+                KrollDict kd = new KrollDict();
+                kd.put("success", "true");
+				kd.put("cvv", TiConvert.toString(scanResult.cvv));
+				kd.put("expiryMonth", TiConvert.toString(scanResult.expiryMonth));
+				kd.put("expiryYear", TiConvert.toString(scanResult.expiryYear));
+				kd.put("cardNumber", scanResult.getFormattedCardNumber());
+                fireEvent("complete", kd);
 			} 
 			else {
 				resultStr = "Scan was canceled.";
 
-				callbackDict.put("success", "false");
-				callbackDict.put("cancelled", resultStr);
-
-				callback.callAsync((KrollObject)callback, callbackDict);
+                KrollDict kd = new KrollDict();
+                kd.put("success", "false");                
+                kd.put("cancelled",resultStr);
+                fireEvent("error", kd);
+                
+				// callbackDict.put("success", "false");
+				// callbackDict.put("cancelled", resultStr);
+                // 
+				// callback.callAsync((KrollObject)callback, callbackDict);
 			}
 			
 			Log.d(LCAT, "Scan results: " + resultStr);
@@ -167,6 +182,11 @@ public class CardIOModule extends KrollModule
     public void setPayPalLogo(boolean val) {
         usePaypalIcon = !val;
     }
+    @Kroll.setProperty
+    @Kroll.method
+    public void setLocale(String loc) {
+        locale = loc;
+    }
     
     @Kroll.getProperty
     @Kroll.method
@@ -179,5 +199,9 @@ public class CardIOModule extends KrollModule
     public boolean getPayPalLogo() {
         return usePaypalIcon;
     }
-
+    @Kroll.getProperty
+    @Kroll.method
+    public String getLocale() {
+        return locale;
+    }
 }
