@@ -15,4 +15,4 @@ name: Card.io
 moduleid: com.likelysoft.cardio
 guid: c0304131-9611-4fff-9f83-f48bc9fa1714
 platform: android
-minsdk: 6.0.0.GA
+minsdk: 5.5.1.GA
