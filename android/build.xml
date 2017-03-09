@@ -1,6 +1,6 @@
-<project name="ios" default="dist">
+<project name="card.io" default="dist">
 	<description>
-		Ant build script for Titanium Android module ios
+		Ant build script for Titanium Android module Card.io
 	</description>
 
 	<property name="ti.module.root" location="${basedir}"/>
@@ -24,26 +24,7 @@
 		</condition>
 	</fail>
 
-	<!-- Copy documentation subdirectories -->
-	<mkdir dir="${basedir}/documentation"/>
-	<copy todir="${basedir}/documentation">
-		<fileset dir="${basedir}/../documentation"/>
-	</copy>
-
-	<!-- Copy example subdirectories -->
-	<mkdir dir="${basedir}/example"/>
-	<copy todir="${basedir}/example">
-		<fileset dir="${basedir}/../example"/>
-	</copy>
-
-	<!-- Copy assets subdirectories -->
-	<mkdir dir="${basedir}/assets"/>
-	<copy todir="${basedir}/assets">
-		<fileset dir="${basedir}/../assets"/>
-	</copy>
-
 	<!-- Copy license -->
-	<copy todir="${basedir}" file="${basedir}/../LICENSE"/>
 
 	<target name="cleancopy" description="Delete old copies">
 		<delete dir="${basedir}/documentation"/>
@@ -53,11 +34,6 @@
 	</target>
 	
 	<target name="post.jar">
-      <copy todir="${libs}/armeabi">
-        <fileset dir="jniLibs/armeabi">
-          <include name="*.so"/>
-        </fileset>
-      </copy>
       <copy todir="${libs}/armeabi-v7a">
         <fileset dir="jniLibs/armeabi-v7a">
           <include name="*.so"/>

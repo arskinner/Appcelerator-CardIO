@@ -36,17 +36,20 @@
 		2D2156C01BBEF939003CC2F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D2156BF1BBEF939003CC2F0 /* QuartzCore.framework */; };
 		2D2156C21BBEF93F003CC2F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D2156C11BBEF93F003CC2F0 /* Security.framework */; };
 		2D2156C41BBEF943003CC2F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D2156C31BBEF943003CC2F0 /* UIKit.framework */; };
-		2D46C8C91BC5F0EE006F7BBA /* CardIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C01BC5F0EE006F7BBA /* CardIO.h */; settings = {ASSET_TAGS = (); }; };
-		2D46C8CA1BC5F0EE006F7BBA /* CardIOCreditCardInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C11BC5F0EE006F7BBA /* CardIOCreditCardInfo.h */; settings = {ASSET_TAGS = (); }; };
-		2D46C8CB1BC5F0EE006F7BBA /* CardIODetectionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C21BC5F0EE006F7BBA /* CardIODetectionMode.h */; settings = {ASSET_TAGS = (); }; };
-		2D46C8CC1BC5F0EE006F7BBA /* CardIOPaymentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C31BC5F0EE006F7BBA /* CardIOPaymentViewController.h */; settings = {ASSET_TAGS = (); }; };
-		2D46C8CD1BC5F0EE006F7BBA /* CardIOPaymentViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C41BC5F0EE006F7BBA /* CardIOPaymentViewControllerDelegate.h */; settings = {ASSET_TAGS = (); }; };
-		2D46C8CE1BC5F0EE006F7BBA /* CardIOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C51BC5F0EE006F7BBA /* CardIOUtilities.h */; settings = {ASSET_TAGS = (); }; };
-		2D46C8CF1BC5F0EE006F7BBA /* CardIOView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C61BC5F0EE006F7BBA /* CardIOView.h */; settings = {ASSET_TAGS = (); }; };
-		2D46C8D01BC5F0EE006F7BBA /* CardIOViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C71BC5F0EE006F7BBA /* CardIOViewDelegate.h */; settings = {ASSET_TAGS = (); }; };
-		2D46C8D11BC5F0EE006F7BBA /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D46C8C81BC5F0EE006F7BBA /* libCardIO.a */; settings = {ASSET_TAGS = (); }; };
+		2D46C8C91BC5F0EE006F7BBA /* CardIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C01BC5F0EE006F7BBA /* CardIO.h */; };
+		2D46C8CA1BC5F0EE006F7BBA /* CardIOCreditCardInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C11BC5F0EE006F7BBA /* CardIOCreditCardInfo.h */; };
+		2D46C8CB1BC5F0EE006F7BBA /* CardIODetectionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C21BC5F0EE006F7BBA /* CardIODetectionMode.h */; };
+		2D46C8CC1BC5F0EE006F7BBA /* CardIOPaymentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C31BC5F0EE006F7BBA /* CardIOPaymentViewController.h */; };
+		2D46C8CD1BC5F0EE006F7BBA /* CardIOPaymentViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C41BC5F0EE006F7BBA /* CardIOPaymentViewControllerDelegate.h */; };
+		2D46C8CE1BC5F0EE006F7BBA /* CardIOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C51BC5F0EE006F7BBA /* CardIOUtilities.h */; };
+		2D46C8CF1BC5F0EE006F7BBA /* CardIOView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C61BC5F0EE006F7BBA /* CardIOView.h */; };
+		2D46C8D01BC5F0EE006F7BBA /* CardIOViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D46C8C71BC5F0EE006F7BBA /* CardIOViewDelegate.h */; };
+		2D46C8D11BC5F0EE006F7BBA /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D46C8C81BC5F0EE006F7BBA /* libCardIO.a */; };
 		AA747D9F0F9514B9006C5449 /* ComLikelysoftCardio_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComLikelysoftCardio_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		C1CFDC5C1E703832002AA81C /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CFDC5B1E703832002AA81C /* libopencv_core.a */; };
+		C1CFDC5E1E703847002AA81C /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CFDC5D1E703847002AA81C /* libopencv_imgproc.a */; };
+		C1CFDC601E7038F2002AA81C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CFDC5F1E7038F2002AA81C /* Accelerate.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,9 @@
 		2D46C8C81BC5F0EE006F7BBA /* libCardIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCardIO.a; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ComLikelysoftCardio_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComLikelysoftCardio_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C1CFDC5B1E703832002AA81C /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = CardIO/libopencv_core.a; sourceTree = "<group>"; };
+		C1CFDC5D1E703847002AA81C /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = CardIO/libopencv_imgproc.a; sourceTree = "<group>"; };
+		C1CFDC5F1E7038F2002AA81C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libComLikelysoftCardio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libComLikelysoftCardio.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,6 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1CFDC5E1E703847002AA81C /* libopencv_imgproc.a in Frameworks */,
+				C1CFDC5C1E703832002AA81C /* libopencv_core.a in Frameworks */,
 				2D2156C41BBEF943003CC2F0 /* UIKit.framework in Frameworks */,
 				2D2156C21BBEF93F003CC2F0 /* Security.framework in Frameworks */,
 				2D2156C01BBEF939003CC2F0 /* QuartzCore.framework in Frameworks */,
@@ -106,6 +114,7 @@
 				2D2156B61BBEF916003CC2F0 /* CoreGraphics.framework in Frameworks */,
 				2D2156B41BBEF910003CC2F0 /* AVFoundation.framework in Frameworks */,
 				2D2156B21BBEF90A003CC2F0 /* AudioToolbox.framework in Frameworks */,
+				C1CFDC601E7038F2002AA81C /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +144,9 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1CFDC5F1E7038F2002AA81C /* Accelerate.framework */,
+				C1CFDC5D1E703847002AA81C /* libopencv_imgproc.a */,
+				C1CFDC5B1E703832002AA81C /* libopencv_core.a */,
 				2D2156C31BBEF943003CC2F0 /* UIKit.framework */,
 				2D2156C11BBEF93F003CC2F0 /* Security.framework */,
 				2D2156BF1BBEF939003CC2F0 /* QuartzCore.framework */,
@@ -297,6 +309,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DSTROOT = /tmp/ComLikelysoftCardio.dst;
@@ -325,7 +338,10 @@
 					"-DDEBUG",
 					"-DTI_POST_1_2",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
 				PRODUCT_NAME = ComLikelysoftCardio;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -340,6 +356,7 @@
 			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/ComLikelysoftCardio.dst;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_TUNING = G5;
@@ -363,7 +380,10 @@
 					"$(PROJECT_DIR)/CardIO/CardIO",
 				);
 				OTHER_CFLAGS = "-DTI_POST_1_2";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
 				PRODUCT_NAME = ComLikelysoftCardio;
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
