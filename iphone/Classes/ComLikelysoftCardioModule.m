@@ -36,6 +36,10 @@
 	[super startup];
     
     [CardIOUtilities preload];
+    
+    paypalLogo = YES;
+    cardIOLogo = NO;
+    locale = @"en";
 
 	NSLog(@"[INFO] %@ loaded",self);
 }
@@ -90,12 +94,63 @@
 
 #pragma Public APIs
 
+-(id)paypalLogo {
+    return NUMBOOL(paypalLogo);
+}
+
+-(void)setPaypalLogo:(id)value {
+    NSNumber * numValue = [value retain];
+    paypalLogo = [numValue boolValue];
+}
+
+-(id)cardIOLogo {
+    return NUMBOOL(cardIOLogo);
+}
+
+-(void)setCardIOLogo:(id)value {
+    NSNumber * numValue = [value retain];
+    cardIOLogo = [numValue boolValue];
+}
+
+-(id)guideColor {
+    return [[[TiColor alloc] initWithColor:guideColor name:@"#fff"] autorelease];
+}
+
+-(void)setGuideColor:(id)color {
+    if ([color isKindOfClass:[UIColor class]])
+    {
+        guideColor = color;
+    }
+    else
+    {
+        TiColor *ticolor = [TiUtils colorValue:color];
+        guideColor = [ticolor _color];
+    }
+}
+
+-(id)locale {
+    return locale;
+}
+
+-(void)setLocale:(id)localeValue {
+    ENSURE_STRING(localeValue);
+    
+    locale = [localeValue retain];
+}
+
 - (void)scanCard:(id)args {
     ENSURE_UI_THREAD(scanCard,args);
     
     _callback = [[args objectAtIndex:0] retain];
     
     CardIOPaymentViewController *scanViewController = [[[CardIOPaymentViewController alloc] initWithPaymentDelegate:self] autorelease];
+    scanViewController.hideCardIOLogo = !paypalLogo;
+    scanViewController.useCardIOLogo = cardIOLogo;
+    scanViewController.languageOrLocale = locale;
+    
+    if (guideColor) {
+        scanViewController.guideColor = guideColor;
+    }
     
     [[TiApp app] showModalController:scanViewController animated:YES];
 }

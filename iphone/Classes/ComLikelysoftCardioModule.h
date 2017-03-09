@@ -11,6 +11,10 @@
 @interface ComLikelysoftCardioModule : TiModule <CardIOPaymentViewControllerDelegate>
 {
     KrollCallback * _callback;
+    BOOL paypalLogo;
+    BOOL cardIOLogo;
+    NSString* locale;
+    UIColor *guideColor;
 }
 @property (nonatomic, retain) KrollCallback * _callback;
 @end
