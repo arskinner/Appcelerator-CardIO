@@ -4,8 +4,6 @@ Appcelerator wrapper for the Card.io credit card scanning library. Use the phone
 
 ### Using the module
 
-#### Android
-
 Methods:
 * setCardIOLogo(bool)
 * setPaypalLogo(bool)
@@ -16,14 +14,13 @@ Events:
 * complete
 * error
 
-#### iOS
 * scanCard(callback)
 
 See example/app.js for usage.
 
 ### Building iOS from source
 
-If you need to rebuild the iOS module from source, you will need to add the card.io library yourself. 
+If you need to rebuild the iOS module from source, you will need to add the card.io library yourself.
 
 The required header files are present, so you just need to [download the SDK](https://github.com/card-io/card.io-iOS-SDK) from card.io and then unzip and move the libCardIO.a file into the CardIO folder in the iphone directory.
 
