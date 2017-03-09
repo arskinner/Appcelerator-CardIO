@@ -163,6 +163,8 @@
     [event setObject:@"cancel" forKey:@"success"];
     [self _fireEventToListener:@"completed" withObject:event listener:self._callback thisObject:nil];
     
+    [self fireEvent:@"error" withObject:event];
+    
     // Handle user cancellation here...
     [[[TiApp app] controller] dismissViewControllerAnimated:YES completion:nil];
     
@@ -181,6 +183,8 @@
     [event setObject:info.cvv forKey:@"cvv"];
     [event setObject:@"true" forKey:@"success"];
     [self _fireEventToListener:@"completed" withObject:event listener:self._callback thisObject:nil];
+    
+    [self fireEvent:@"complete" withObject:event];
     
     [[[TiApp app] controller] dismissViewControllerAnimated:YES completion:nil];
     
