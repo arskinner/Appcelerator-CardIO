@@ -8,6 +8,7 @@ Methods:
 * setCardIOLogo(bool)
 * setPaypalLogo(bool)
 * setLocale(String)
+* setGuideColor(Ti.Color)
 * scanCard()
 
 Events:

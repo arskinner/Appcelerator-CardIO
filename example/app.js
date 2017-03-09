@@ -27,6 +27,7 @@ button.addEventListener('click', function() {
     // Setup card settings:
     cardio.setCardIOLogo(false);
     cardio.setPaypalLogo(true);
+    cardio.setGuideColor("#FAA81A");
     cardio.setLocale("de");
     // Open modal scanner window
     cardio.scanCard();
