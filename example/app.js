@@ -8,47 +8,29 @@ var button = Ti.UI.createButton({
     title: 'Scan Card'
 });
 
-if (Ti.Platform.osname == "android") {
-    cardio.addEventListener("complete", function(data) {
-        // NOTE this is for demonstration only, never log the
-        // complete credit card number. Use redactedCardNumber
-        // instead.
-        Ti.API.info("Card number: " + data.cardNumber);
-        Ti.API.info("Redacted card number: " + data.redactedCardNumber);
-        Ti.API.info("Expiration month: " + data.expiryMonth);
-        Ti.API.info("Expiration year: " + data.expiryYear);
-        Ti.API.info("CVV code: " + data.cvv)
-    });
-    cardio.addEventListener("error", function(e) {
-        console.log("error");
-    });
-}
-button.addEventListener('click', function() {
-    // Open modal scanner window
-    if (Ti.Platform.osname == "android") {
-        // android
-        cardio.setCardIOLogo(false);
-        cardio.setPaypalLogo(true);
-        cardio.setLocale("de");
 
-        cardio.scanCard();
-    } else {
-        // ios
-        cardio.scanCard(function(data) {
-            if (data.success == 'true') {
-                // NOTE this is for demonstration only, never log the
-                // complete credit card number. Use redactedCardNumber
-                // instead.
-                Ti.API.info("Card number: " + data.cardNumber);
-                Ti.API.info("Redacted card number: " + data.redactedCardNumber);
-                Ti.API.info("Expiration month: " + data.expiryMonth);
-                Ti.API.info("Expiration year: " + data.expiryYear);
-                Ti.API.info("CVV code: " + data.cvv)
-            } else {
-                // User canceled or there was an error
-            }
-        });
-    }
+cardio.addEventListener("complete", function(data) {
+    // NOTE this is for demonstration only, never log the
+    // complete credit card number. Use redactedCardNumber
+    // instead.
+    Ti.API.info("Card number: " + data.cardNumber);
+    Ti.API.info("Redacted card number: " + data.redactedCardNumber);
+    Ti.API.info("Expiration month: " + data.expiryMonth);
+    Ti.API.info("Expiration year: " + data.expiryYear);
+    Ti.API.info("CVV code: " + data.cvv);
+});
+cardio.addEventListener("error", function(e) {
+    console.log("error");
+});
+
+button.addEventListener('click', function() {
+    // Setup card settings:
+    cardio.setCardIOLogo(false);
+    cardio.setPaypalLogo(true);
+    cardio.setLocale("de");
+    // Open modal scanner window
+    cardio.scanCard();
+
 });
 win.add(button);
 win.open();
