@@ -152,6 +152,15 @@
         scanViewController.guideColor = guideColor;
     }
     
+	if([args length]> 1)
+	{
+        	NSString* isCVVtoShow =[args objectAtIndex:1];
+	        if([isCVVtoShow isEqualToString:@"N"])
+        	    scanViewController.collectCVV= NO;
+	        else if([isCVVtoShow isEqualToString:@"Y"])
+        	    scanViewController.collectCVV= YES;
+	}	
+	
     [[TiApp app] showModalController:scanViewController animated:YES];
 }
 
