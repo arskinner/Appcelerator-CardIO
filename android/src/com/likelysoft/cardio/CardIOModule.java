@@ -19,7 +19,6 @@ import org.appcelerator.kroll.annotations.Kroll;
 import org.appcelerator.titanium.util.TiConvert;
 
 import org.appcelerator.titanium.TiApplication;
-import org.appcelerator.titanium.TiContext;
 import org.appcelerator.kroll.common.Log;
 import org.appcelerator.kroll.common.TiConfig;
 
@@ -32,6 +31,7 @@ import org.appcelerator.titanium.util.TiIntentWrapper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 
 @Kroll.module(name="CardIO", id="com.likelysoft.cardio")
 public class CardIOModule extends KrollModule
@@ -41,6 +41,10 @@ public class CardIOModule extends KrollModule
 	// Standard Debugging variables
 	private static final String LCAT = "CardIOModule";
 	private static final boolean DBG = TiConfig.LOGD;
+    private boolean useCardioIcon = false;
+    private boolean usePaypalIcon = true;
+    private String locale = "en";
+    private int guideColor = Color.GREEN;
 
 	public CardIOModule()
 	{
@@ -56,16 +60,21 @@ public class CardIOModule extends KrollModule
 	// Methods
 	// Scan a card
 	@Kroll.method
-	public void scanCard(KrollFunction callback) throws Exception {
+	public void scanCard() throws Exception {
         Log.d(LCAT, "inside CardIO scanCard");
 
 		final Activity activity = TiApplication.getAppCurrentActivity();
 		final TiActivitySupport activitySupport = (TiActivitySupport) activity;
 
 		final TiIntentWrapper scanIntent = new TiIntentWrapper(new Intent(activity, CardIOActivity.class));
+
 		scanIntent.setWindowId(TiIntentWrapper.createActivityName("CARDIOMODULE"));
 
 		// Customize these values to suit your needs.
+        scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_LANGUAGE_OR_LOCALE, locale);
+        scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, !useCardioIcon);
+        scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_USE_PAYPAL_ACTIONBAR_ICON, usePaypalIcon); // default: true
+        scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, guideColor); // default: GREEN
 		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true); // default: true
 		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, true); // default: false
 
@@ -74,17 +83,17 @@ public class CardIOModule extends KrollModule
 
 		CardIOResultHandler resultHandler = new CardIOResultHandler();
 
-        resultHandler.callback = callback;
+        //resultHandler.callback = callback;
 		resultHandler.activitySupport = activitySupport;
 		resultHandler.scanIntent = scanIntent.getIntent();
-		
+
 		activity.runOnUiThread(resultHandler);
 	}
-	
+
 	protected class CardIOResultHandler implements TiActivityResultHandler, Runnable {
 
 		protected int code;
-		protected KrollFunction callback;
+		//protected KrollFunction callback;
 		protected TiActivitySupport activitySupport;
 		protected Intent scanIntent;
 
@@ -97,12 +106,13 @@ public class CardIOModule extends KrollModule
 		public void onError(Activity activity, int requestCode, Exception e) {
 			String msg = "Problem with scanner; " + e.getMessage();
 			Log.d(LCAT, "inside CardIOResultHandler onError " + msg);
-			
-			HashMap<String, String> callbackDict = new HashMap<String, String>();
-			
-			callbackDict.put("success", "false");
-			
-            callback.callAsync((KrollObject)callback, callbackDict);
+
+			//HashMap<String, String> callbackDict = new HashMap<String, String>();
+			//callbackDict.put("success", "false");
+            //callback.callAsync((KrollObject)callback, callbackDict);
+            KrollDict kd = new KrollDict();
+            kd.put("success", "false");
+            fireEvent("error", kd);
 		}
 
 		public void onResult(Activity activity, int requestCode, int resultCode, Intent data) {
@@ -114,7 +124,7 @@ public class CardIOModule extends KrollModule
 			// process the results
 			if (data != null && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
 			    Log.d(LCAT, "got result");
-			
+
 				CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
 
 				// Never log a raw card number. Avoid displaying it, but if
@@ -130,27 +140,70 @@ public class CardIOModule extends KrollModule
 					resultStr += "CVV has " + scanResult.cvv.length() + " digits.\n";
 				}
 
-				// get all of the data in a hash for returning
-				callbackDict.put("success", "true");
-				callbackDict.put("cvv", TiConvert.toString(scanResult.cvv));
-				callbackDict.put("expiryMonth", TiConvert.toString(scanResult.expiryMonth));
-				callbackDict.put("expiryYear", TiConvert.toString(scanResult.expiryYear));
-				callbackDict.put("cardNumber", scanResult.getFormattedCardNumber());
-
-				callback.callAsync((KrollObject)callback, callbackDict);
-			} 
+				// // get all of the data in a hash for returning
+                KrollDict kd = new KrollDict();
+                kd.put("success", "true");
+				kd.put("cvv", TiConvert.toString(scanResult.cvv));
+				kd.put("expiryMonth", TiConvert.toString(scanResult.expiryMonth));
+				kd.put("expiryYear", TiConvert.toString(scanResult.expiryYear));
+				kd.put("cardNumber", scanResult.getFormattedCardNumber());
+                fireEvent("complete", kd);
+			}
 			else {
 				resultStr = "Scan was canceled.";
 
-				callbackDict.put("success", "false");
-				callbackDict.put("cancelled", resultStr);
-
-				callback.callAsync((KrollObject)callback, callbackDict);
+                KrollDict kd = new KrollDict();
+                kd.put("success", "false");
+                kd.put("cancelled",resultStr);
+                fireEvent("error", kd);
 			}
-			
+
 			Log.d(LCAT, "Scan results: " + resultStr);
 		}
 	}
 
-}
+    @Kroll.setProperty
+    @Kroll.method
+    public void setCardIOLogo(boolean val) {
+        useCardioIcon = !val;
+    }
 
+    @Kroll.setProperty
+    @Kroll.method
+    public void setPaypalLogo(boolean val) {
+        usePaypalIcon = !val;
+    }
+    @Kroll.setProperty
+    @Kroll.method
+    public void setLocale(String loc) {
+        locale = loc;
+    }
+    @Kroll.setProperty
+    @Kroll.method
+    public void setGuideColor(String colorString) {
+        guideColor = TiConvert.toColor(colorString);
+    }
+
+    @Kroll.getProperty
+    @Kroll.method
+    public boolean getCardIOLogo() {
+        return useCardioIcon;
+    }
+
+    @Kroll.getProperty
+    @Kroll.method
+    public boolean getPaypalLogo() {
+        return usePaypalIcon;
+    }
+    @Kroll.getProperty
+    @Kroll.method
+    public String getLocale() {
+        return locale;
+    }
+    @Kroll.getProperty
+    @Kroll.method
+    public String getGuideColor() {
+        String hexColor = String.format("#%06X", (0xFFFFFF & guideColor));
+        return hexColor;
+    }
+}
