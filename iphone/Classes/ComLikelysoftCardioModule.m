@@ -39,6 +39,7 @@
     
     paypalLogo = YES;
     cardIOLogo = NO;
+    collectCVV = YES;
     locale = @"en";
 
 	NSLog(@"[INFO] %@ loaded",self);
@@ -112,6 +113,11 @@
     cardIOLogo = [numValue boolValue];
 }
 
+-(void)setCollectCVV:(id)value {
+    NSNumber * numValue = [value retain];
+    cardIOLogo = [numValue boolValue];
+}
+
 -(id)guideColor {
     return [[[TiColor alloc] initWithColor:guideColor name:@"#fff"] autorelease];
 }
@@ -147,20 +153,12 @@
     scanViewController.hideCardIOLogo = !paypalLogo;
     scanViewController.useCardIOLogo = cardIOLogo;
     scanViewController.languageOrLocale = locale;
+    scanViewController.collectCVV = collectCVV;
     
     if (guideColor) {
         scanViewController.guideColor = guideColor;
     }
-    
-	if([args length]> 1)
-	{
-        	NSString* isCVVtoShow =[args objectAtIndex:1];
-	        if([isCVVtoShow isEqualToString:@"N"])
-        	    scanViewController.collectCVV= NO;
-	        else if([isCVVtoShow isEqualToString:@"Y"])
-        	    scanViewController.collectCVV= YES;
-	}	
-	
+    	
     [[TiApp app] showModalController:scanViewController animated:YES];
 }
 

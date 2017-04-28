@@ -13,6 +13,7 @@
     KrollCallback * _callback;
     BOOL paypalLogo;
     BOOL cardIOLogo;
+    BOOL collectCVV;
     NSString* locale;
     UIColor *guideColor;
 }
