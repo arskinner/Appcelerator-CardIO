@@ -8,7 +8,6 @@ var button = Ti.UI.createButton({
     title: 'Scan Card'
 });
 
-
 cardio.addEventListener("complete", function(data) {
     // NOTE this is for demonstration only, never log the
     // complete credit card number. Use redactedCardNumber
@@ -19,6 +18,7 @@ cardio.addEventListener("complete", function(data) {
     Ti.API.info("Expiration year: " + data.expiryYear);
     Ti.API.info("CVV code: " + data.cvv);
 });
+
 cardio.addEventListener("error", function(e) {
     console.log("error");
 });
@@ -29,9 +29,11 @@ button.addEventListener('click', function() {
     cardio.setPaypalLogo(true);
     cardio.setGuideColor("#FAA81A");
     cardio.setLocale("de");
+    cardio.setCollectCVV(true);
+    
     // Open modal scanner window
     cardio.scanCard();
-
 });
+
 win.add(button);
 win.open();

@@ -4,27 +4,31 @@ Appcelerator wrapper for the Card.io credit card scanning library. Use the phone
 
 ### Using the module
 
+On new versions of iOS, you must set NSCameraUsageDescription (in tiapp.xml):
+
+```
+<key>NSCameraUsageDescription</key>
+<string>Scan credit cards</string>
+```
+
 Methods:
 * setCardIOLogo(bool)
 * setPaypalLogo(bool)
 * setLocale(String)
 * setGuideColor(Ti.Color)
+* setCollectCVV(bool)
 * scanCard()
 
 Events:
 * complete
 * error
 
-* scanCard(callback)
-
 See example/app.js for usage.
 
 ### Building iOS from source
 
-If you need to rebuild the iOS module from source, you will need to add the card.io library yourself.
+Since the python build script was deprecated, you should build with the following command (cd into `iphone` first)
 
-The required header files are present, so you just need to [download the SDK](https://github.com/card-io/card.io-iOS-SDK) from card.io and then unzip and move the libCardIO.a file into the CardIO folder in the iphone directory.
-
-After that you may or may not need to re-add that file in XCode.
-
-_Additionally, don't forget to update titanium.xcconfig with your SDK path._
+```
+appc ti build -p ios --build-only
+```
