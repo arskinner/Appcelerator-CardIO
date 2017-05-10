@@ -43,6 +43,7 @@ public class CardIOModule extends KrollModule
 	private static final boolean DBG = TiConfig.LOGD;
     private boolean useCardioIcon = false;
     private boolean usePaypalIcon = true;
+    private boolean collectCVV = true;
     private String locale = "en";
     private int guideColor = Color.GREEN;
 
@@ -76,7 +77,7 @@ public class CardIOModule extends KrollModule
         scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_USE_PAYPAL_ACTIONBAR_ICON, usePaypalIcon); // default: true
         scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, guideColor); // default: GREEN
 		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true); // default: true
-		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, true); // default: false
+		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, collectCVV); // default: false
 
 		// Hides the manual entry button
 		scanIntent.getIntent().putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, true); // default: false
@@ -135,7 +136,7 @@ public class CardIOModule extends KrollModule
 					resultStr += "Expiration Date: " + scanResult.expiryMonth + "/" + scanResult.expiryYear + "\n";
 				}
 
-				if (scanResult.cvv != null) {
+				if (collectCVV && scanResult.cvv != null) {
 					// Never log or display a CVV
 					resultStr += "CVV has " + scanResult.cvv.length() + " digits.\n";
 				}
@@ -143,7 +144,9 @@ public class CardIOModule extends KrollModule
 				// // get all of the data in a hash for returning
                 KrollDict kd = new KrollDict();
                 kd.put("success", "true");
-				kd.put("cvv", TiConvert.toString(scanResult.cvv));
+                if(collectCVV) {
+    				kd.put("cvv", TiConvert.toString(scanResult.cvv));
+    			}
 				kd.put("expiryMonth", TiConvert.toString(scanResult.expiryMonth));
 				kd.put("expiryYear", TiConvert.toString(scanResult.expiryYear));
 				kd.put("cardNumber", scanResult.getFormattedCardNumber());
@@ -166,6 +169,12 @@ public class CardIOModule extends KrollModule
     @Kroll.method
     public void setCardIOLogo(boolean val) {
         useCardioIcon = !val;
+    }
+    
+    @Kroll.setProperty
+    @Kroll.method
+    public void setCollectCVV(boolean val) {
+        collectCVV = val;
     }
 
     @Kroll.setProperty
