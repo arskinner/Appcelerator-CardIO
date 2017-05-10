@@ -179,15 +179,24 @@
 
 - (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)scanViewController {
     // The full card number is available as info.cardNumber, but don't log that!
-    NSLog(@"Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv);
     
+    if (collectCVV) {
+        NSLog(@"Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv);
+    }
+    else {
+        NSLog(@"Received card info. Number: %@, expiry: %02i/%i.", info.redactedCardNumber, info.expiryMonth, info.expiryYear);
+    }
     
     NSMutableDictionary *event = [NSMutableDictionary dictionary];
     [event setObject:info.cardNumber forKey:@"cardNumber"];
     [event setObject:info.redactedCardNumber forKey:@"redactedCardNumber"];
     [event setObject:[NSString stringWithFormat:@"%lu",(unsigned long)info.expiryMonth] forKey:@"expiryMonth"];
     [event setObject:[NSString stringWithFormat:@"%lu",(unsigned long)info.expiryYear] forKey:@"expiryYear"];
-    [event setObject:info.cvv forKey:@"cvv"];
+    
+    if (collectCVV) {
+        [event setObject:info.cvv forKey:@"cvv"];
+    }
+    
     [event setObject:@"true" forKey:@"success"];
     [self _fireEventToListener:@"completed" withObject:event listener:self._callback thisObject:nil];
     
