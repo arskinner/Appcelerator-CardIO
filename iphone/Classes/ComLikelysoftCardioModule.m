@@ -115,7 +115,7 @@
 
 -(void)setCollectCVV:(id)value {
     NSNumber * numValue = [value retain];
-    cardIOLogo = [numValue boolValue];
+    collectCVV = [numValue boolValue];
 }
 
 -(id)guideColor {
