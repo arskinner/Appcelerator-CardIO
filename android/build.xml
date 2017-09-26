@@ -1,4 +1,4 @@
-<project name="card.io" default="dist">
+<project name="cardio" default="dist">
 	<description>
 		Ant build script for Titanium Android module Card.io
 	</description>
